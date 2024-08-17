@@ -1,0 +1,162 @@
+#import "libs/jasnaoe-conf/jasnaoe-conf_lib.typ": jasnaoe-conf
+#show: jasnaoe-conf.with()
+
+#import "libs/jasnaoe-conf/direct_bib_lib.typ": bibliography-list, bib-item, use-bib-item-ref
+#show: use-bib-item-ref.with(numbering: "1)") // 番号の書式を指定
+
+
+// ここから論文の内容を記述してください．
+
+= 緒　　言
+このテンプレートは，2024年秋季以降の日本船舶海洋工学会の講演会論文作成を想定して，#link("https://typst.app")[Typst]で作成しています．
+もちろん♡非公式♡のテンプレートですので，ご使用の際は自己責任でお願いします．
+
+
+= 執筆のための環境設定
+
+手元のPCでTypst環境を構築する必要があります．基本的には，#link("https://typst.app")[Typst]のマニュアルを参考に構築してください．
+不安な方は，README.md に記載されている手順に従ってください．
+
+
+= 執筆方法
+
+== 基本的な執筆の流れ
+
+原稿執筆の際には，このテンプレートファイルに直接打ち込んでいって下さい．
+読点は「，」句点は「．」を使って下さい．
+章は `=`，節は `==`，小節は `===` で始めます．
+改段落は LaTeX と同じく改行を 2 つ以上挟みます．
+数字つき箇条書きは `+` で，数字なしの箇条書きは `-` を文頭につけて書くことができます．
+
+例えば，数字付きの箇条書きは
++ 1番目
++ 2番目
++ 3番目
+のような感じです．
+
+例えば，数字なしの箇条書きは
+- 1番目
+- 2番目
+- 3番目
+のような感じです．
+
+文字組等の投稿規定を満たすように作られていますので，フォントの種類の設定や行送り，文字サイズの設定を省略することができます．
+ちなみに，本文の文字サイズは9pt，行間隔は1.00emと設定してします．
+その他，文法は#link("https://typst.app/docs")[Typst Documentation]をご参照ください．
+
+== 図
+
+図の入れ方は#link("https://typst.app")[Typst]のドキュメントや，このテンプレートファイルを参考にしてください．
+図のタイトルは @fig:fig_example のように図の下部につけてください．
+図の表題（caption）は英語で書きます．
+また，表題の最後にはピリオドを付けて下さい．
+また，図は原則として英語表記としてください．
+日本語もしくはその他の言語の表記が必要な場合は，英語との併記としてください．
+文字・記号等は十分に判読できる大きさとしてください．
+ここで placement 属性は，自動 (auto) だけでなく，紙面の上 (top) に寄せるか下 (bottom) に寄せるかを決められます．言及している文章に近い方に調整してください．
+
+#figure(
+  placement: auto, // top, bottom, auto
+  image("figs/example.svg", width: 100%),
+  caption: [Example of a figure.],
+) <fig:fig_example>
+
+
+== 表
+
+表の入れ方は#link("https://typst.app")[Typst]のドキュメントや，このテンプレートファイルを参考にしてください．
+表は，@tab:table_example のように表形式で記述します．
+表題（caption）は表の上に書きます．
+表の表題（caption）は英語で書きます．
+また，表題の最後にはピリオドを付けて下さい．
+また，表も原則として英語表記としてください．
+ここで placement 属性は，自動 (auto) だけでなく，紙面の上 (top) に寄せるか下 (bottom) に寄せるかを決められます．
+必要に応じて，言及している文章に近い方に調整してください．
+
+#figure(
+  placement: auto, // top, bottom, auto
+  caption: [Example of a table.],
+  table(
+    columns: 4,
+    stroke: (x: none),
+    table.header(
+      [*Margins*],
+      [...],
+      [*Left Column*],
+      [*Right Column*],
+    ),
+    row-gutter: (2.2pt, auto),
+    [Top], [...], [27 mm], [27 mm],
+    [Left], [...], [16 mm], [107.5 mm],
+    [Right], [...], [100 mm], [191.5 mm],
+    [Bottom], [...], [275 mm], [275 mm],
+  )
+) <tab:table_example>
+
+
+== 数式
+
+数式番号をつけるような中央揃えの数式は，最初の`$` と閉じの`$`の中に記載してください．
+数式の書き方はTypstのドキュメントを参照してください．
+例えば，@eq:mmg_example のように記述してください．
+
+$
+m(dot(u)-v r) &=-m_x dot(u)+m_y v r+X_H+X_P+X_R \
+m(dot(v)+u r) &=-m_y dot(v)+m_x u r+Y_H+Y_R \
+I_(z G) dot(r) &=-J_Z dot(r)+N_H+N_R
+$ <eq:mmg_example>
+
+また，文中に書く数式は，例えば，$n_i = sum_(i=1)^(N)(f(r_(i j)))$のように記述してください．
+
+
+== 特殊な章
+謝辞と参考文献は他の章とは異なり，章番号が自動でつかないように設定しています．
+
+
+== 参考文献
+参考文献は このファイルの`#bibliography-list` に直接記載してください．
+参考文献の書き方は，このテンプレートファイルを参考にしてください．
+参考文献は英語表記としてください．
+英語等(フランス語，ドイツ語その他アルファベットで表される言語) 以外の文献の場合，文献に英語等のタイトルがある場合はそれを記載し，無い場合は英訳と原語の併記としてください．
+併記の場合は，改行コードである 「`\`」 を使ってください．
+著者名：論文タイトル，掲載論文名，巻・号番号，ページ番号，発行年を書き，最後にピリオドを付けます．
+引用の方法については後述します．
+引用されていない論文を参考文献に記載するのは，推奨されていません．
+提出前に引用されているかを必ず確認してください．
+
+== 引用
+参考文献に記載したものを引用する際には この #super[@MakiStochastic2023] ように表示されます．
+参考文献は連続して引用すると #super[@format-en-journal @OkuboProduction2023 @YamamotoStructure1986] となります．
+引用の際には，`@` の後に参考文献のキーを記載してください．
+
+= おわりに
+
+論文の最後には結論を書きます．
+箇条書きスタイルを使うなどして，分かり易く，コンパクトに書いて下さい．
+結論を先に読むという読者も居ますので，分かり易く，何が研究されて，新しく何が分かったのかなどを書きます．
+
+
+= 謝　　辞
+
+謝辞が必要なときは，結論の次に書きます．章番号は付けませんが，「謝辞」の表題はセンタリングをして下さい．
+
+
+// 参考文献
+#bibliography-list(
+  title: "参　考　文　献", // 参考文献の章のタイトル
+)[
+  #bib-item(<format-en-journal>)[
+    Family names and initials of all authors: Title of the paper, _abbreviated title of the journal (or conference proceedings),_ number of the volume, number of the issue, numbers of the first and last pages, and year of publication.
+  ]
+  #bib-item(<MakiStochastic2023>)[
+    Maki, A., Hoshino, K., Dostal, L. et al.: Stochastic stabilization and destabilization of ship maneuvering motion by multiplicative noise, _Journal of Marine Science and Technology_, 28, 704–718, 2023.
+  ]
+  #bib-item(<OkuboProduction2023>)[
+    Okubo. Y., Mitsuyuki. T.: Study of the practical application of production planning method using shipbuilding process simulation, _Journal of the Japan Society of Naval Architects and Ocean Engineers_, 37, 115-123, 2023 (in Japanese). \
+    大久保友結，満行泰河：船舶建造工程シミュレーションを用いた生産計画立案手法の現場適用に関する研究, _日本船舶海洋工学会論文集_, 37, 115-123, 2023.
+  ]
+  #bib-item(<YamamotoStructure1986>)[
+    Yamamoto, Y., Otsubo, H., Sumi, Y., and Fujino, M.: Ship Structural Mechanics, Seizando-Shoten Publishing Co., Ltd., 1986 (in Japanese). \
+    山本善之，大坪英臣, 角洋一，藤野正隆：船体構造力学，_成山堂書店_，1986．
+  ]
+]
